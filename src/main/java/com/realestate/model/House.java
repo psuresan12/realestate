@@ -1,16 +1,42 @@
 package com.realestate.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
 public class House {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
+	
+	@NotNull
+	@Size(min=2, message="Description should have atleast 2 characters")
+	@Size(max=250, message="Description should have max of 250 characters")
 	String description;
+	
+	@NotNull
+	@Size(min=2, message="Address should have atleast 2 characters")
+	@Size(max=250, message="Address should have max of 250 characters")
 	String address;
+	
+	@NotNull
+	@Size(min=2, message="City should have atleast 2 characters")
+	@Size(max=250, message="City should have max of 250 characters")
 	String city;
+	
+	@NotNull
 	Double price;
 	
-	public House(Long id, String description, String address, String city, Double price) {
+	public House() {
 		super();
-		this.id = id;
+	}
+	
+	public House(String description, String address, String city, Double price) {
+		super();
 		this.description = description;
 		this.address = address;
 		this.city = city;
